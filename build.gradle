@@ -58,6 +58,7 @@ bintray {
         repo = 'jvm-sdks'
         name = 'java'
         userOrg = 'hanko'
+        licenses = ['Apache-2.0']
         vcsUrl = ''
         publish = true
         version {
