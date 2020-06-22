@@ -27,7 +27,8 @@ The response from the UAF client then can be send back to the Hanko API as shown
 UafValidationRequest uafValidationRequest = new UafValidationRequest();
 uafValidationRequest.setUafResponse("<UAF_RESPONSE>");
 try {
-    hankoClient.validateUafOperation("<REQUEST_ID>", uafValidationRequest);
+    HankoRequest hankoRequest = hankoClient.validateUafOperation("<REQUEST_ID>", uafValidationRequest);
+    // check if `hankoRequest.status == Status.OK`
 } catch (Exception ex) {
     // react appropriate
 }
@@ -58,7 +59,8 @@ The response from the UAF client then can be send back to the Hanko API as shown
 UafValidationRequest uafValidationRequest = new UafValidationRequest();
 uafValidationRequest.setUafResponse("<UAF_RESPONSE>");
 try {
-    hankoClient.validateUafOperation("<REQUEST_ID>", uafValidationRequest);
+    HankoRequest hankoRequest = hankoClient.validateUafOperation("<REQUEST_ID>", uafValidationRequest);
+    // check if `hankoRequest.status == Status.OK`
 } catch (Exception ex) {
     // react appropriate
 }
