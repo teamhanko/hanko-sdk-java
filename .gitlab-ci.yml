@@ -1,0 +1,13 @@
+image: openjdk:8-jdk
+
+build:
+  stage: build
+  script:
+    - ./gradlew build
+
+publishBintray:
+  stage: publish
+  only:
+    - tags
+  script:
+    - ./gradlew bintrayUpload
