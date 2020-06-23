@@ -65,7 +65,7 @@ public class HankoClient {
         return response;
     }
 
-    public HankoRequest requestUafOperation(CreateHankoAuthenticatorRequest request) throws InvalidParameterException {
+    public HankoRequest requestUafOperation(CreateUafRequest request) throws InvalidParameterException {
         ValidationResult result = request.isValid();
         if (!result.isValid()) {
             throw new InvalidParameterException(result.getMessage());

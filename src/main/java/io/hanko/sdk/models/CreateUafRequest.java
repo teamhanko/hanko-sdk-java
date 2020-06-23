@@ -1,6 +1,6 @@
 package io.hanko.sdk.models;
 
-public class CreateHankoAuthenticatorRequest extends CommonCreateRequest {
+public class CreateUafRequest extends CommonCreateRequest {
 
     public ValidationResult isValid() {
         if(username == null) {

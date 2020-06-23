@@ -6,7 +6,7 @@
 
 #### 1. Get a UAF registration request
 ```java
-CreateHankoAuthenticatorRequest createHankoRequest = new CreateHankoAuthenticatorRequest();
+CreateUafRequest createHankoRequest = new CreateUafRequest();
 createHankoRequest.setUserId("<USER_ID>");
 createHankoRequest.setUsername("<USERNAME>");
 createHankoRequest.setOperation(Operation.REG);
@@ -38,7 +38,7 @@ try {
 
 #### 1. Get a UAF authentication request
 ```java
-CreateHankoAuthenticatorRequest createHankoRequest = new CreateHankoAuthenticatorRequest();
+CreateUafRequest createHankoRequest = new CreateUafRequest();
 createHankoRequest.setUserId("<USER_ID>");
 createHankoRequest.setUsername("<USERNAME>");
 createHankoRequest.setOperation(Operation.AUTH);
