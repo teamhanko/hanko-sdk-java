@@ -1,7 +1,5 @@
 package io.hanko.sdk.models;
 
-import java.util.Objects;
-
 public abstract class CommonCreateRequest {
     protected Operation operation;
     protected String username;
