@@ -59,7 +59,7 @@ bintray {
         name = 'java'
         userOrg = 'hanko'
         licenses = ['Apache-2.0']
-        vcsUrl = ''
+        vcsUrl = 'https://github.com/teamhanko/hanko-sdk-java'
         publish = true
         version {
             name = project.version
