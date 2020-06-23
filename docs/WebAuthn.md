@@ -9,7 +9,7 @@ You can get a Webauthn registration request as shown below:
 ```java
 CreateWebAuthnRequest createWebAuthnRequest = new CreateWebAuthnRequest();
 createWebAuthnRequest.setUserId("<USER_ID>");
-createWebAuthnRequest.setDisplayName("<DISPLAY_NAME>");
+createWebAuthnRequest.setUsername("<USERNAME>");
 createWebAuthnRequest.setOperation(Operation.REG);
 
 try {
@@ -57,7 +57,7 @@ You can get a WebAuthn authentication request as shown below:
 ```java
 CreateWebAuthnRequest createWebAuthnRequest = new CreateWebAuthnRequest();
 createWebAuthnRequest.setUserId("<USER_ID>");
-createWebAuthnRequest.setDisplayName("<DISPLAY_NAME>");
+createWebAuthnRequest.setUsername("<USERNAME>");
 createWebAuthnRequest.setOperation(Operation.AUTH);
 
 try {
