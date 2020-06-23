@@ -1,5 +1,9 @@
 image: openjdk:8-jdk
 
+stages:
+  - build
+  - publish
+
 build:
   stage: build
   script:
