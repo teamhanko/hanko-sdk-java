@@ -9,6 +9,11 @@ build:
   script:
     - ./gradlew build
 
+testenv:
+    stage: publish
+    script:
+        - env
+
 publishBintray:
   stage: publish
   only:
