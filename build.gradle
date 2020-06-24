@@ -31,8 +31,6 @@ dependencies {
     implementation 'org.slf4j:slf4j-api:1.7.30'
 }
 
-//def bintrayUser = System.getenv('BINTRAY_USER') ?: ""
-//def bintrayKey = System.getenv('BINTRAY_KEY') ?: ""
 def projectDisplayName = "HANKO Java SDK"
 project.version = System.getenv('CI_COMMIT_TAG') ?: "1.0-SNAPSHOT"
 group = "io.hanko"
