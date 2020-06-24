@@ -52,7 +52,7 @@ publishing {
 
 bintray {
     user = "${System.getenv('BINTRAY_USER')}" ?: ""
-    key = "${System.getenv('BINTRAY_KEY')}" ?: ""
+    key = System.getenv('BINTRAY_KEY') ?: ""
     publications = ['Publication']
     pkg {
         repo = 'jvm-sdks'
