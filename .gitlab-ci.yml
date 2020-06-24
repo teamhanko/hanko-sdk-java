@@ -14,4 +14,4 @@ publishBintray:
   only:
     - tags
   script:
-    - ./gradlew -d bintrayUpload
+    - ./gradlew bintrayUpload
