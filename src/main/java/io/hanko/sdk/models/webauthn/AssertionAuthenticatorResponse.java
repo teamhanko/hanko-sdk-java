@@ -11,4 +11,12 @@ public class AssertionAuthenticatorResponse extends AuthenticatorResponse {
     public void setSignature(String signature) {
         this.signature = signature;
     }
+
+    public String getAuthenticatorData() {
+        return authenticatorData;
+    }
+
+    public String getSignature() {
+        return signature;
+    }
 }
