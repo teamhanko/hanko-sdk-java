@@ -90,7 +90,7 @@ public class HankoClient {
     }
 
     public HankoRequest validateWebAuthnRequest(String requestId, WebAuthnValidationRequest webauthnValidationRequest) {
-        return putOperation("/v1/uaf/requests/" + requestId, webauthnValidationRequest, HankoRequest.class);
+        return putOperation("/v1/webauthn/requests/" + requestId, webauthnValidationRequest, HankoRequest.class);
     }
 
     public HankoRequest getWebAuthnRequest(String requestId) {
