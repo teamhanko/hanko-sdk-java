@@ -36,10 +36,23 @@ project.version = System.getenv('CI_COMMIT_TAG') ?: "1.0-SNAPSHOT"
 group = "io.hanko"
 sourceCompatibility = '1.8'
 
+tasks.register("sourcesJar", Jar) {
+    from sourceSets.main.allJava
+    classifier "sources"
+}
+
+tasks.register("javadocJar", Jar) {
+    from javadoc
+    classifier "javadoc"
+}
+
 publishing {
     publications {
         Publication(MavenPublication) {
             from(components.java)
+
+            artifact sourcesJar
+            artifact javadocJar
 
             groupId "$PUBLISH_GROUP_ID"
             artifactId "$PUBLISH_ARTIFACT_ID"
