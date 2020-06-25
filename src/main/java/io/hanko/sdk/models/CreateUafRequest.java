@@ -1,5 +1,8 @@
 package io.hanko.sdk.models;
 
+/**
+ * Class which holds all relevant data to request an UAF operation.
+ */
 public class CreateUafRequest extends CommonCreateRequest {
 
     public ValidationResult isValid() {
