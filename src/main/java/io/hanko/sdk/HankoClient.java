@@ -1,15 +1,19 @@
 package io.hanko.sdk;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.jsontype.BasicPolymorphicTypeValidator;
 import com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import io.hanko.sdk.http.HankoHttpClient;
 import io.hanko.sdk.http.HankoHttpClientFactory;
 import io.hanko.sdk.json.HankoJsonParser;
 import io.hanko.sdk.json.HankoJsonParserFactory;
+import io.hanko.sdk.json.jackson.CustomAuthenticatorResponseDeserializer;
 import io.hanko.sdk.models.*;
+import io.hanko.sdk.models.webauthn.AuthenticatorResponse;
 import io.hanko.sdk.models.webauthn.WebAuthnValidationRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,14 +27,18 @@ public class HankoClient {
     private HankoJsonParser jsonParser;
     private HankoClientConfig hankoClientConfig;
     private Logger logger;
-    private PolymorphicTypeValidator ptv;
+    private SimpleModule jacksonModule;
+    private ObjectMapper objectMapper = new ObjectMapper();
 
     public HankoClient(HankoHttpClientFactory httpClientFactory, HankoJsonParserFactory jsonParserFactory, HankoClientConfig hankoClientConfig) {
         this.httpClientFactory = httpClientFactory;
         this.jsonParser = jsonParserFactory.create();
         this.hankoClientConfig = hankoClientConfig;
         this.logger = LoggerFactory.getLogger(HankoClient.class);
-        this.ptv = BasicPolymorphicTypeValidator.builder().build();
+
+        this.jacksonModule = new SimpleModule();
+        this.jacksonModule.addDeserializer(AuthenticatorResponse.class, new CustomAuthenticatorResponseDeserializer());
+        this.objectMapper.registerModule(this.jacksonModule);
     }
 
     private <T> T postOperation(String url, Object createRequest, Class<T> responseType) {
@@ -63,7 +71,6 @@ public class HankoClient {
         HankoHttpClient httpClient = httpClientFactory.create(hankoClientConfig);
 
         logger.debug("GET operation at '{}'", url);
-
         InputStream is = httpClient.get(url);
 
         T response = jsonParser.parse(is, responseType);
@@ -101,9 +108,7 @@ public class HankoClient {
     }
 
     public HankoRequest validateWebAuthnRequest(String requestId, String webauthnValidationRequestJSON) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.activateDefaultTyping(this.ptv);
-        WebAuthnValidationRequest webAuthnValidationRequest = objectMapper.readValue(webauthnValidationRequestJSON, WebAuthnValidationRequest.class);
+        WebAuthnValidationRequest webAuthnValidationRequest = this.objectMapper.readValue(webauthnValidationRequestJSON, WebAuthnValidationRequest.class);
         return validateWebAuthnRequest(requestId, webAuthnValidationRequest);
     }
 
