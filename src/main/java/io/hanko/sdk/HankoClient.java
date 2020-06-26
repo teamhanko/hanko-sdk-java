@@ -1,5 +1,8 @@
 package io.hanko.sdk;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.hanko.sdk.http.HankoHttpClient;
 import io.hanko.sdk.http.HankoHttpClientFactory;
 import io.hanko.sdk.json.HankoJsonParser;
@@ -91,6 +94,11 @@ public class HankoClient {
 
     public HankoRequest validateWebAuthnRequest(String requestId, WebAuthnValidationRequest webauthnValidationRequest) {
         return putOperation("/v1/webauthn/requests/" + requestId, webauthnValidationRequest, HankoRequest.class);
+    }
+
+    public HankoRequest validateWebAuthnRequest(String requestId, String webauthnValidationRequestJSON) throws JsonProcessingException {
+        WebAuthnValidationRequest webAuthnValidationRequest = new ObjectMapper().readValue(webauthnValidationRequestJSON, WebAuthnValidationRequest.class);
+        return validateWebAuthnRequest(requestId, webAuthnValidationRequest);
     }
 
     public HankoRequest getWebAuthnRequest(String requestId) {
