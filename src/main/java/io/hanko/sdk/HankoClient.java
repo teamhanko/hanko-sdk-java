@@ -3,6 +3,8 @@ package io.hanko.sdk;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.jsontype.BasicPolymorphicTypeValidator;
+import com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator;
 import io.hanko.sdk.http.HankoHttpClient;
 import io.hanko.sdk.http.HankoHttpClientFactory;
 import io.hanko.sdk.json.HankoJsonParser;
@@ -21,12 +23,14 @@ public class HankoClient {
     private HankoJsonParser jsonParser;
     private HankoClientConfig hankoClientConfig;
     private Logger logger;
+    private PolymorphicTypeValidator ptv;
 
     public HankoClient(HankoHttpClientFactory httpClientFactory, HankoJsonParserFactory jsonParserFactory, HankoClientConfig hankoClientConfig) {
         this.httpClientFactory = httpClientFactory;
         this.jsonParser = jsonParserFactory.create();
         this.hankoClientConfig = hankoClientConfig;
         this.logger = LoggerFactory.getLogger(HankoClient.class);
+        this.ptv = BasicPolymorphicTypeValidator.builder().build();
     }
 
     private <T> T postOperation(String url, Object createRequest, Class<T> responseType) {
@@ -97,7 +101,9 @@ public class HankoClient {
     }
 
     public HankoRequest validateWebAuthnRequest(String requestId, String webauthnValidationRequestJSON) throws JsonProcessingException {
-        WebAuthnValidationRequest webAuthnValidationRequest = new ObjectMapper().readValue(webauthnValidationRequestJSON, WebAuthnValidationRequest.class);
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.activateDefaultTyping(this.ptv);
+        WebAuthnValidationRequest webAuthnValidationRequest = objectMapper.readValue(webauthnValidationRequestJSON, WebAuthnValidationRequest.class);
         return validateWebAuthnRequest(requestId, webAuthnValidationRequest);
     }
 
