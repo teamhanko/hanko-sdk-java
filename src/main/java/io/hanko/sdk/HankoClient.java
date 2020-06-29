@@ -10,6 +10,7 @@ import io.hanko.sdk.json.HankoJsonParserFactory;
 import io.hanko.sdk.json.jackson.CustomAuthenticatorResponseDeserializer;
 import io.hanko.sdk.models.*;
 import io.hanko.sdk.models.webauthn.AuthenticatorResponse;
+import io.hanko.sdk.models.webauthn.WebAuthnResponse;
 import io.hanko.sdk.models.webauthn.WebAuthnValidationRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -103,8 +104,16 @@ public class HankoClient {
         return putOperation("/v1/webauthn/requests/" + requestId, webauthnValidationRequest, HankoRequest.class);
     }
 
-    public HankoRequest validateWebAuthnRequest(String requestId, String webauthnValidationRequestJSON) throws JsonProcessingException {
-        WebAuthnValidationRequest webAuthnValidationRequest = this.objectMapper.readValue(webauthnValidationRequestJSON, WebAuthnValidationRequest.class);
+    public HankoRequest validateWebAuthnRequest(String requestId, String webAuthnResponseJSON) throws JsonProcessingException {
+        return validateWebAuthnRequest(requestId, webAuthnResponseJSON, null);
+    }
+
+    public HankoRequest validateWebAuthnRequest(String requestId, String webAuthnResponseJSON, ClientDeviceKeyInformation deviceKeyInfo) throws JsonProcessingException {
+        WebAuthnResponse webAuthnResponse = this.objectMapper.readValue(webAuthnResponseJSON, WebAuthnResponse.class);
+        WebAuthnValidationRequest webAuthnValidationRequest = new WebAuthnValidationRequest();
+        webAuthnValidationRequest.setWebAuthnResponse(webAuthnResponse);
+        webAuthnValidationRequest.setDeviceKeyInfo(deviceKeyInfo);
+
         return validateWebAuthnRequest(requestId, webAuthnValidationRequest);
     }
 
