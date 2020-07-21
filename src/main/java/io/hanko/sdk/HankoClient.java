@@ -105,7 +105,7 @@ public class HankoClient {
     }
 
     public HankoRequest validateWebAuthnRequest(String requestId, String webAuthnResponseJSON) throws JsonProcessingException {
-        return validateWebAuthnRequest(requestId, webAuthnResponseJSON, null);
+        return validateWebAuthnRequest(requestId, webAuthnResponseJSON, new ClientDeviceKeyInformation());
     }
 
     public HankoRequest validateWebAuthnRequest(String requestId, String webAuthnResponseJSON, ClientDeviceKeyInformation deviceKeyInfo) throws JsonProcessingException {
