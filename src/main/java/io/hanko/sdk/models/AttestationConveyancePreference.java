@@ -3,7 +3,7 @@ package io.hanko.sdk.models;
 public enum AttestationConveyancePreference {
     NONE("none"),
     INDIRECT("indirect"),
-    DIRCECT("direct");
+    DIRECT("direct");
 
     String attestationConveyancePreference;
 
