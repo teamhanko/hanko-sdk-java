@@ -6,6 +6,7 @@ package io.hanko.sdk.models;
 public class CreateWebAuthnRequest extends CommonCreateRequest {
     private AuthenticatorSelectionCriteria authenticatorSelectionCriteria;
     private String displayName;
+    private AttestationConveyancePreference attestationConveyancePreference;
 
     /**
      * Set the AuthenticatorSelectionCriteria to specify which type of authenticator you allow for the operation
@@ -23,11 +24,19 @@ public class CreateWebAuthnRequest extends CommonCreateRequest {
         this.displayName = displayName;
     }
 
+    public void setAttestationConveyancePreference(AttestationConveyancePreference attestationConveyancePreference) {
+        this.attestationConveyancePreference = attestationConveyancePreference;
+    }
+
     public AuthenticatorSelectionCriteria getAuthenticatorSelectionCriteria() {
         return authenticatorSelectionCriteria;
     }
 
     public String getDisplayName() {
         return displayName;
+    }
+
+    public AttestationConveyancePreference getAttestationConveyancePreference() {
+        return attestationConveyancePreference;
     }
 }
