@@ -1,5 +1,7 @@
 package io.hanko.sdk.models;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum AttestationConveyancePreference {
     NONE("none"),
     INDIRECT("indirect"),
@@ -7,7 +9,12 @@ public enum AttestationConveyancePreference {
 
     String attestationConveyancePreference;
 
-    AttestationConveyancePreference(String uv) {
-        this.attestationConveyancePreference = uv;
+    AttestationConveyancePreference(String attestationConveyancePreference) {
+        this.attestationConveyancePreference = attestationConveyancePreference;
+    }
+
+    @JsonValue
+    public String getAttestationConveyancePreference() {
+        return attestationConveyancePreference;
     }
 }

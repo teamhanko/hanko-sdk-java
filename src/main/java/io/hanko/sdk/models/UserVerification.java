@@ -1,5 +1,7 @@
 package io.hanko.sdk.models;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum UserVerification {
     REQUIRED("required"),
     PREFERRED("preferred"),
@@ -9,5 +11,10 @@ public enum UserVerification {
 
     UserVerification(String uv) {
         this.userVerification = uv;
+    }
+
+    @JsonValue
+    public String getUserVerification() {
+        return userVerification;
     }
 }

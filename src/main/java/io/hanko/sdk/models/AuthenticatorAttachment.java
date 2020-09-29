@@ -1,8 +1,10 @@
 package io.hanko.sdk.models;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum AuthenticatorAttachment {
     PLATFORM("platform"),
-    CROSS_PLATFORM("cross_platform");
+    CROSS_PLATFORM("cross-platform");
 
     private String attachment;
 
@@ -10,6 +12,7 @@ public enum AuthenticatorAttachment {
         this.attachment = authenticatorAttachment;
     }
 
+    @JsonValue
     public String getAttachment() {
         return attachment;
     }

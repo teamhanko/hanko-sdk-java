@@ -1,5 +1,7 @@
 package io.hanko.sdk.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class HankoRequest {
     private String id;
     private Operation operation;
@@ -78,6 +80,7 @@ public class HankoRequest {
         return device;
     }
 
+    @JsonProperty("isSecondFactorOnly")
     public boolean isSecondFactorOnly() {
         return isSecondFactorOnly;
     }
