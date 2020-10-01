@@ -84,4 +84,8 @@ public class HankoRequest {
     public boolean isSecondFactorOnly() {
         return isSecondFactorOnly;
     }
+
+    public void setSecondFactorOnly(boolean secondFactorOnly) {
+        isSecondFactorOnly = secondFactorOnly;
+    }
 }
