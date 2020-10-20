@@ -36,7 +36,9 @@ webAuthnResponse.setType("<TYPE>");
 webAuthnResponse.setResponse(attestationAuthenticatorResponse);
 
 ClientDeviceKeyInformation clientDeviceKeyInformation = new ClientDeviceKeyInformation();
-clientDeviceKeyInformation.setKeyName("<KEY_NAME>");
+clientDeviceKeyInformation.setKeyName("<KEY_NAME>"); // OPTIONAL
+clientDeviceKeyInformation.setDeviceOs("<DEVICE_OS>"); // OPTIONAL
+clientDeviceKeyInformation.setOsVersion("<OS_VERSION>"); // OPTIONAL
 
 WebAuthnValidationRequest webAuthnValidationRequest = new WebAuthnValidationRequest();
 webAuthnValidationRequest.setWebAuthnResponse(webAuthnResponse);
@@ -83,12 +85,8 @@ webAuthnResponse.setRawId("<RAW_ID>");
 webAuthnResponse.setType("<TYPE>");
 webAuthnResponse.setResponse(assertionAuthenticatorResponse);
 
-ClientDeviceKeyInformation clientDeviceKeyInformation = new ClientDeviceKeyInformation();
-clientDeviceKeyInformation.setKeyName("<KEY_NAME>");
-
 WebAuthnValidationRequest webAuthnValidationRequest = new WebAuthnValidationRequest();
 webAuthnValidationRequest.setWebAuthnResponse(webAuthnResponse);
-webAuthnValidationRequest.setDeviceKeyInfo(clientDeviceKeyInformation); // OPTIONAL
 
 try {
     HankoRequest hankoRequest = hankoClient.validateWebAuthnRequest("<REQUEST_ID>", webAuthnValidationRequest);
