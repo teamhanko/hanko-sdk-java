@@ -33,7 +33,8 @@ dependencies {
 }
 
 def projectDisplayName = "HANKO Java SDK"
-project.version = System.getenv('CI_COMMIT_TAG') ?: "1.0-SNAPSHOT"
+project.version = System.getenv('CI_COMMIT_TAG') ?: "1.0.0-SNAPSHOT"
+println(project.version)
 group = "io.hanko"
 sourceCompatibility = '1.8'
 
@@ -63,10 +64,9 @@ publishing {
 }
 
 bintray {
-    user = "${System.getenv('BINTRAY_USER')}" ?: ""
-    key = "${System.getenv('BINTRAY_KEY')}" ?: ""
-	println(user)
-	println(key)
+    user = System.getenv("BINTRAY_USER")
+    key = System.getenv("BINTRAY_KEY")
+
     publications = ['Publication']
     pkg {
         repo = 'jvm-sdks'
