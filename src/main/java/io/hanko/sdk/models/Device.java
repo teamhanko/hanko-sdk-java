@@ -8,6 +8,8 @@ public class Device {
     private String createdAt;
     private AuthenticatorAttachment authenticatorAttachment;
     private boolean isSecondFactorOnly;
+    private String deviceOs;
+    private String osVersion;
 
     public String getDeviceId() {
         return deviceId;
@@ -35,5 +37,13 @@ public class Device {
 
     public boolean isSecondFactorOnly() {
         return isSecondFactorOnly;
+    }
+
+    public String getDeviceOs() {
+        return deviceOs;
+    }
+
+    public String getOsVersion() {
+        return osVersion;
     }
 }
