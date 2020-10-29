@@ -1,5 +1,6 @@
 package io.hanko.sdk.models;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public abstract class CommonCreateRequest {
@@ -9,7 +10,8 @@ public abstract class CommonCreateRequest {
     protected ClientData clientData;
     protected String transaction;
     protected String[] deviceIds;
-    protected boolean isSecondFactorOnly;
+    //@JsonInclude(JsonInclude.Include.NON_NULL)
+    protected Boolean isSecondFactorOnly;
 
     public void setOperation(Operation operation) {
         this.operation = operation;
@@ -35,8 +37,8 @@ public abstract class CommonCreateRequest {
         this.deviceIds = deviceIds;
     }
 
-    public void setSecondFactorOnly(boolean secondFactorOnly) {
-        isSecondFactorOnly = secondFactorOnly;
+    public void setSecondFactorOnly(Boolean secondFactorOnly) {
+        this.isSecondFactorOnly = secondFactorOnly;
     }
 
     public Operation getOperation() {
@@ -64,7 +66,7 @@ public abstract class CommonCreateRequest {
     }
 
     @JsonProperty("isSecondFactorOnly")
-    public boolean isSecondFactorOnly() {
+    public Boolean isSecondFactorOnly() {
         return isSecondFactorOnly;
     }
 

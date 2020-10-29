@@ -7,7 +7,7 @@ public class Device {
     private String lastUsage;
     private String createdAt;
     private AuthenticatorAttachment authenticatorAttachment;
-    private boolean isSecondFactorOnly;
+    private Boolean isSecondFactorOnly;
     private String deviceOs;
     private String osVersion;
 
@@ -35,7 +35,7 @@ public class Device {
         return authenticatorAttachment;
     }
 
-    public boolean isSecondFactorOnly() {
+    public Boolean isSecondFactorOnly() {
         return isSecondFactorOnly;
     }
 

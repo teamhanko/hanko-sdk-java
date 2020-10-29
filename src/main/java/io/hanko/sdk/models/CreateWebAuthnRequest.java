@@ -1,8 +1,11 @@
 package io.hanko.sdk.models;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 /**
  * Class which holds all relevant data to request an web authentication operation.
  */
+@JsonPropertyOrder(alphabetic = true)
 public class CreateWebAuthnRequest extends CommonCreateRequest {
     private AuthenticatorSelectionCriteria authenticatorSelectionCriteria;
     private String displayName;

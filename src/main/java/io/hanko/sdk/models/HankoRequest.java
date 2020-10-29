@@ -18,7 +18,7 @@ public class HankoRequest {
     private String request;
     private String deviceID;
     private HankoRequestDevice device;
-    private boolean isSecondFactorOnly;
+    private Boolean isSecondFactorOnly;
 
     public String getId() {
         return id;
@@ -81,11 +81,11 @@ public class HankoRequest {
     }
 
     @JsonProperty("isSecondFactorOnly")
-    public boolean isSecondFactorOnly() {
+    public Boolean isSecondFactorOnly() {
         return isSecondFactorOnly;
     }
 
-    public void setSecondFactorOnly(boolean secondFactorOnly) {
+    public void setSecondFactorOnly(Boolean secondFactorOnly) {
         isSecondFactorOnly = secondFactorOnly;
     }
 }
