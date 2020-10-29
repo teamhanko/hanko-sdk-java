@@ -76,6 +76,18 @@ public class HankoClient {
         return response;
     }
 
+    private <T> T deleteOperation(String url, Class<T> responseType) {
+        HankoHttpClient httpClient = httpClientFactory.create(hankoClientConfig);
+
+        logger.debug("DELETE operation at '{}'", url);
+        InputStream is = httpClient.delete(url);
+
+        T response = jsonParser.parse(is, responseType);
+        httpClient.close();
+
+        return response;
+    }
+
     public HankoRequest requestUafOperation(CreateUafRequest request) throws InvalidParameterException {
         ValidationResult result = request.isValid();
         if (!result.isValid()) {
@@ -90,6 +102,10 @@ public class HankoClient {
 
     public HankoRequest getUafRequest(String requestId) {
         return getOperation("/v1/uaf/requests/" + requestId, HankoRequest.class);
+    }
+
+    public HankoRequest cancelUafRequest(String requestId) {
+        return deleteOperation("/v1/uaf/requests/" + requestId, HankoRequest.class);
     }
 
     public HankoRequest requestWebAuthnOperation(CreateWebAuthnRequest request) {

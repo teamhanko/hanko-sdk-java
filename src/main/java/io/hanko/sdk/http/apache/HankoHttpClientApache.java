@@ -81,6 +81,20 @@ public class HankoHttpClientApache implements HankoHttpClient {
         }
     }
 
+    @Override
+    public InputStream delete(String url) {
+        HttpDelete httpDelete = new HttpDelete(baseUrl+url);
+        try {
+            String path = httpDelete.getURI().getPath();
+            String method = httpDelete.getMethod();
+            String authHeader = hmacUtil.makeAuthorizationHeader(config.getApiKey(), config.getApiKeyId(), method, path, "");
+            httpDelete.addHeader("Authorization", authHeader);
+            return executeRequest(httpDelete);
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
     private InputStream executeRequest(HttpUriRequest request) {
         try {
             CloseableHttpResponse response = httpclient.execute(request);

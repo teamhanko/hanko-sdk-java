@@ -19,7 +19,6 @@ class CreateWebAuthnRequestTest {
         HankoJsonParserFactory jsonFac = new HankoJsonParserFactoryJackson();
         HankoJsonParser jsonParser = jsonFac.create();
         String json = jsonParser.serialize(req);
-        System.out.println(json);
         assertEquals("{\"attestationConveyancePreference\":null,\"authenticatorSelectionCriteria\":null,\"clientData\":null,\"deviceIds\":null,\"displayName\":null,\"isSecondFactorOnly\":null,\"operation\":\"REG\",\"transaction\":null,\"userId\":\"randomID\",\"username\":\"randomUser\"}",json);
     }
 
