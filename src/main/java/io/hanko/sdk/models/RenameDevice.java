@@ -3,6 +3,9 @@ package io.hanko.sdk.models;
 public class RenameDevice {
     private String newName;
 
+    public RenameDevice() {
+    }
+
     public RenameDevice(String newName) {
         this.newName = newName;
     }
