@@ -137,6 +137,10 @@ public class HankoClient {
         return getOperation("/v1/webauthn/requests/" + requestId, HankoRequest.class);
     }
 
+    public HankoRequest cancelWebAuthnRequest(String requestId) {
+        return deleteOperation("/v1/webauthn/requests/" + requestId, HankoRequest.class);
+    }
+
     public Device[] getRegisteredDevices(String userId) {
         return getOperation("/mgmt/v1/registrations/" + userId, Device[].class);
     }
