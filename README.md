@@ -35,7 +35,7 @@ Java.
 
 ### Gradle
 ```groovy
-implementation 'io.hanko:java-sdk:2.0.0'
+implementation 'io.hanko:java-sdk:2.x.x'
 ```
 
 ### Maven
@@ -43,7 +43,7 @@ implementation 'io.hanko:java-sdk:2.0.0'
 <dependency>
   <groupId>io.hanko</groupId>
   <artifactId>java-sdk</artifactId>
-  <version>2.0.0</version>
+  <version>2.x.x</version>
 </dependency>
 ```
 
