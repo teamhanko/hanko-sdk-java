@@ -1,17 +1,40 @@
 image: gradle:jdk11
 
+before_script:
+  - export GRADLE_USER_HOME=`pwd`/.gradle
+
 stages:
   - build
-  - publish
+  - coverage
+
+cache:
+  paths:
+    - .gradle/wrapper
+    - .gradle/caches
 
 build:
   stage: build
   script:
-    - gradle build
+    - ./gradlew build
+  coverage: '/    - Line Coverage: ([0-9.]+)%/'
+  artifacts:
+    when: always
+    paths:
+      - build/reports/jacoco/test/jacocoTestReport.xml
+    reports:
+      junit: build/test-results/test/**/TEST-*.xml
 
-publishBintray:
-  stage: publish
-  only:
-    - tags
+coverage:
+  stage: coverage
+  image: registry.gitlab.com/haynes/jacoco2cobertura:1.0.7
   script:
-    - gradle bintrayUpload
+    # convert report from jacoco to cobertura
+    - python /opt/cover2cover.py build/reports/jacoco/test/jacocoTestReport.xml $CI_PROJECT_DIR/src/main/java/ > build/cobertura.xml
+  needs: ["build"]
+  dependencies:
+    - build
+  artifacts:
+    reports:
+      cobertura: build/cobertura.xml
+
+
