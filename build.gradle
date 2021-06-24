@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-    api 'org.apache.httpcomponents:httpclient:4.5.12'
+    api 'org.apache.httpcomponents:httpclient:4.5.13'
     implementation 'com.fasterxml.jackson.core:jackson-core:2.12.3'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
     implementation 'org.slf4j:slf4j-api:1.7.30'
@@ -27,7 +27,7 @@ dependencies {
 }
 
 group = "io.hanko"
-project.version = System.getenv('CI_COMMIT_TAG') ?: "2.0.0-SNAPSHOT"
+project.version = System.getenv('CI_COMMIT_TAG') ?: "2.0.1-SNAPSHOT"
 ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
 sourceCompatibility = '1.8'
 
