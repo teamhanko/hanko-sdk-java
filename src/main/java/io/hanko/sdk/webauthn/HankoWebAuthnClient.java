@@ -149,7 +149,7 @@ public class HankoWebAuthnClient {
      * @throws io.hanko.sdk.exception.HankoNotFoundException if no credential was found
      */
     public WebAuthnCredential getCredential(String credentialId) {
-        HankoHttpResponse response = httpClient.get(CREDENTIALS + credentialId);
+        HankoHttpResponse response = httpClient.get(CREDENTIALS + "/" + credentialId);
         return parser.deserialize(response.getStream(), WebAuthnCredential.class);
     }
 
@@ -181,7 +181,7 @@ public class HankoWebAuthnClient {
      * @throws io.hanko.sdk.exception.HankoNotFoundException if no credential was found
      */
     public boolean deleteCredential(String credentialId) {
-        HankoHttpResponse response = httpClient.delete(CREDENTIALS + credentialId);
+        HankoHttpResponse response = httpClient.delete(CREDENTIALS +  "/" + credentialId);
         return response.getStatusCode() == HttpStatus.SC_NO_CONTENT;
     }
 
@@ -197,7 +197,7 @@ public class HankoWebAuthnClient {
      */
     public WebAuthnCredential updateCredential(String credentialId, CredentialUpdateRequest request) {
         String body = parser.serialize(request);
-        HankoHttpResponse response = httpClient.put(CREDENTIALS + credentialId, body);
+        HankoHttpResponse response = httpClient.put(CREDENTIALS + "/" + credentialId, body);
         return parser.deserialize(response.getStream(), WebAuthnCredential.class);
     }
 }

@@ -61,7 +61,7 @@ Once you have set up your account, create a `HankoClientConfig` with the API URL
 use it to construct a `HankoWebAuthnClient`.
 
 ```java
-HankoClientConfig hankoClientConfig = new HankoClientConfig("<API_URL>", "<API_KEY_ID>", "<API_SECRET>");
+HankoClientConfig hankoClientConfig = new HankoClientConfig("<API_URL>", "<API_SECRET>", "<API_KEY_ID>");
 HankoWebAuthnClient hankoClient = new HankoWebAuthnClient(hankoClientConfig);
 ```
 
@@ -71,7 +71,7 @@ The SDK uses [Apache HttpComponents](https://hc.apache.org/httpcomponents-client
 HTTP client. You can provide a customized HttpClient when constructing the `HankoWebAuthnClient`:
 
 ```java
-HankoClientConfig hankoClientConfig = new HankoClientConfig("<API_URL>", "<API_KEY_ID>", "<API_SECRET>");
+HankoClientConfig hankoClientConfig = new HankoClientConfig("<API_URL>", "<API_SECRET>", "<API_KEY_ID>");
 CloseableHttpClient customHttpClient = HttpClients.custom()
         .setProxy(...) // e.g. if you want to proxy requests
         // more customizations

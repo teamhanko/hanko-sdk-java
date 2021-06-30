@@ -57,20 +57,22 @@ public abstract class HankoHttpClientBase {
      * @throws HankoClientException        - if an error occurs during authorization header construction
      */
     protected HankoHttpResponse makeRequest(HttpMethod method, String path, String body) {
+        String url = constructUrl(path);
+
+        RequestBuilder builder = RequestBuilder.create(method.toString())
+                .setUri(url);
+
         String authHeader = HmacUtil.makeAuthorizationHeader(
                 config.getApiSecret(),
                 config.getApiKeyId(),
-                method.toString(),
-                path,
+                builder.getMethod(),
+                builder.getUri().getPath(),
                 body
         );
-        String url = constructUrl(path);
+
+        builder.setHeader("Authorization", authHeader);
 
         logRequest(method, url, body, authHeader);
-
-        RequestBuilder builder = RequestBuilder.create(method.toString())
-                .setUri(url)
-                .setHeader("Authorization", authHeader);
 
         if (body != null) {
             builder.setHeader("Content-Type", "application/json")
@@ -88,7 +90,7 @@ public abstract class HankoHttpClientBase {
                     path
             );
         } catch (IOException ex) {
-            throw new HankoApiConnectionException("Could not connect: ", ex);
+            throw new HankoApiConnectionException("Could not connect to Hanko API", ex);
         } finally {
             HttpClientUtils.closeQuietly(response);
         }

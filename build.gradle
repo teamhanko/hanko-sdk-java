@@ -27,7 +27,7 @@ dependencies {
 }
 
 group = "io.hanko"
-project.version = System.getenv('CI_COMMIT_TAG') ?: "2.0.1-SNAPSHOT"
+project.version = System.getenv('CI_COMMIT_TAG') ?: "2.0.2-SNAPSHOT"
 ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
 sourceCompatibility = '1.8'
 

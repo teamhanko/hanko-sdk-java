@@ -41,5 +41,5 @@ public class Endpoints {
     /**
      * Hanko API endpoint path for credentials.
      */
-    public static final String CREDENTIALS = "/v1/webauthn/credentials/";
+    public static final String CREDENTIALS = "/v1/webauthn/credentials";
 }
